@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بیت‌کوین‌های سعیده</title>
-    <meta charset="UTF-8">
+        <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Standard favicon -->
@@ -43,44 +41,75 @@
 
     <!-- Manifest file -->
     <link rel="manifest" href="FavIcon/manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <title>سعیده</title>
     <style>
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            font-size: 4em; /* Increased font size */
-            font-weight: bold;
-            color: white;
-            background-color: #f7931a; /* Bitcoin orange */
-            text-align: center;
-            margin: 0;
-        }
-    </style>
+    @font-face {
+      font-family: 'IranYekan';
+      src: url('https://raw.githubusercontent.com/tripasect/nrassets/main/iranyekan-fanum-regular.ttf') format('truetype');
+    }
+    
+    
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    background-color: black;
+
+}
+
+h1 {
+    color: green;
+    font-size: 55px;
+    font-family: "IranYekan", "Noto Kufi Arabic", serif;
+    text-align: center; /* Ensures text inside is centered */
+}
+</style>
 </head>
 <body>
-    <div id="assetValue">درحال بارگذاری...‏</div>
+
+    <h1 id="result">درحال بارگذاری...‌‏</h1>
 
     <script>
-        const BTC_AMOUNT = 0.001347;
+        // API URL
+        const apiUrl = "https://brsapi.ir/FreeTsetmcBourseApi/Api_Free_Gold_Currency.json";
 
-        function updateAssetValue() {
-            fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
-                .then(response => response.json())
-                .then(data => {
-                    const btcPrice = data.bitcoin.usd;
-                    const assetValue = btcPrice * BTC_AMOUNT;
-                    document.getElementById('assetValue').textContent = `$${assetValue.toFixed(2)}`;
-                })
-                .catch(error => {
-                    document.getElementById('assetValue').textContent = 'بارگذاری شکست خورد. دوباره امتحان کنید.‏';
-                    console.error('Error:', error);
-                });
+        // Function to fetch the USD price and calculate the result
+        async function fetchAndCalculate() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                // Find USD price
+                const usd = data.currency.find(item => item.name === "دلار");
+                
+                // Find BTC price
+                const btc = data.cryptocurrency.find(item => item.name === "بیت کوین");
+
+                if (usd) {
+                    const result = btc.price * 0.001348 * usd.price;
+                    const resultString = result.toString()
+                    const million = resultString.slice(0, 2)
+                    const thousands = resultString.slice(2, 5)
+                    document.getElementById("result").textContent = `\‌‏${million} میلیون و ${thousands} هزار تومان`;
+                } else {
+                    document.getElementById("result").textContent = "USD price not found.";
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                document.getElementById("result").textContent = "Error fetching data.";
+            }
         }
 
-        // Call the function to fetch and display the asset value
-        updateAssetValue();
+        // Call function on page load
+        fetchAndCalculate();
     </script>
+
 </body>
 </html>
+
+
