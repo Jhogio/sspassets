@@ -1,115 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-        <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="FavIcon/favicon.ico" />
+  <title>گاوصندوق</title>
+  <style>
+  @font-face {
+  font-family: 'SF Arabic';
+  src: url('https://raw.githubusercontent.com/Jhogio/nrassets/refs/heads/main/font.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
-    <!-- Standard favicon -->
-    <link rel="icon" href="FavIcon/favicon.ico" type="image/x-icon">
-
-    <!-- Favicon for different sizes -->
-    <link rel="icon" type="image/png" sizes="16x16" href="FavIcon/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="FavIcon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="FavIcon/favicon-96x96.png">
-
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" sizes="57x57" href="FavIcon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="FavIcon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="FavIcon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="FavIcon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="FavIcon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="FavIcon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="FavIcon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="FavIcon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="FavIcon/apple-icon-180x180.png">
-
-    <!-- Android Icons -->
-    <link rel="icon" type="image/png" sizes="36x36" href="FavIcon/android-icon-36x36.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="FavIcon/android-icon-48x48.png">
-    <link rel="icon" type="image/png" sizes="72x72" href="FavIcon/android-icon-72x72.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="FavIcon/android-icon-96x96.png">
-    <link rel="icon" type="image/png" sizes="144x144" href="FavIcon/android-icon-144x144.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="FavIcon/android-icon-192x192.png">
-
-    <!-- Microsoft Icons -->
-    <meta name="msapplication-TileImage" content="FavIcon/ms-icon-144x144.png">
-    <meta name="msapplication-square70x70logo" content="FavIcon/ms-icon-70x70.png">
-    <meta name="msapplication-square150x150logo" content="FavIcon/ms-icon-150x150.png">
-    <meta name="msapplication-square310x310logo" content="FavIcon/ms-icon-310x310.png">
-    <meta name="msapplication-config" content="FavIcon/browser_config.xml">
-
-    <!-- Manifest file -->
-    <link rel="manifest" href="FavIcon/manifest.json">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <title>سعیده</title>
-    <style>
-    @font-face {
-      font-family: 'IranYekan';
-      src: url('https://raw.githubusercontent.com/tripasect/nrassets/main/iranyekan-fanum-regular.ttf') format('truetype');
+    :root {
+      --primary-color: orange;
+      --background-color: #0a0a0a;
+      --card-bg: #1a1a1a;
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text-secondary: #888;
+      --transition-speed: 0.3s;
+      --shadow-color: rgba(0, 0, 0, 0.3);
     }
-    
-    
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
-    background-color: black;
 
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-h1 {
-    color: green;
-    font-size: 55px;
-    font-family: "IranYekan", "Noto Kufi Arabic", serif;
-    text-align: center; /* Ensures text inside is centered */
-}
-</style>
+    body {
+      min-height: 100vh;
+      height: 100vh;
+      background: var(--background-color);
+      font-family: 'SF Arabic';
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      padding: 2rem;
+      background: linear-gradient(145deg, #111, #1a1a1a);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px var(--shadow-color);
+      border: 1px solid var(--card-border);
+      transition: transform var(--transition-speed);
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+    }
+
+    .value-display {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .main-value {
+      color: var(--primary-color);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+
+      margin: 1rem 0;
+      transition: all var(--transition-speed) ease;
+    }
+
+    .loading {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+
+    .loading:after {
+      content: "";
+      display: block;
+      border-radius: 50%;
+      width: 0;
+      height: 0;
+      margin: 8px;
+      box-sizing: border-box;
+      border: 32px solid var(--primary-color);
+      border-color: var(--primary-color) transparent var(--primary-color) transparent;
+      animation: loading 1.2s infinite;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      transition: transform var(--transition-speed);
+    }
+
+    .stat-card:hover {
+      transform: scale(1.05);
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+
+    .unit {
+      font-size: 0.8em;
+      color: var(--text-secondary);
+      margin-right: 0.3em;
+    }
+
+    @keyframes loading {
+      0% {
+        transform: rotate(0);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+      .main-value {
+        font-size: 3rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="value-display">
+      <div id="result" class="main-value">
+        <div class="loading"></div>
+      </div>
+      <div class="stats-grid" id="stats">
+        <!-- Dynamic content will be inserted here -->
+      </div>
+    </div>
+  </div>
 
-    <h1 id="result">درحال بارگذاری...‌‏</h1>
+  <script>
+    // Utility function to convert Latin digits to Persian digits
+    function convertToPersianDigits(input) {
+      const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+      return input.toString().replace(/\d/g, (digit) => persianDigits[digit]);
+    }
 
-    <script>
-        // API URL
-        const apiUrl = "https://brsapi.ir/FreeTsetmcBourseApi/Api_Free_Gold_Currency.json";
+    const apiUrl = "https://brsapi.ir/FreeTsetmcBourseApi/Api_Free_Gold_Currency.json";
+    const resultElement = document.getElementById("result");
+    const statsElement = document.getElementById("stats");
 
-        // Function to fetch the USD price and calculate the result
-        async function fetchAndCalculate() {
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+    async function fetchAndCalculate() {
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
 
-                // Find USD price
-                const usd = data.currency.find(item => item.name === "دلار");
-                
-                // Find BTC price
-                const btc = data.cryptocurrency.find(item => item.name === "بیت کوین");
+        const usd = data.currency.find(item => item.name === "دلار");
+        const btc = data.cryptocurrency.find(item => item.name === "بیت کوین");
 
-                if (usd) {
-                    const result = btc.price * 0.001348 * usd.price;
-                    const resultString = result.toString()
-                    const million = resultString.slice(0, 2)
-                    const thousands = resultString.slice(2, 5)
-                    document.getElementById("result").textContent = `\‌‏${million} میلیون و ${thousands} هزار تومان`;
-                } else {
-                    document.getElementById("result").textContent = "USD price not found.";
-                }
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                document.getElementById("result").textContent = "Error fetching data.";
-            }
+        if (!usd || !btc) {
+          throw new Error("داده‌های مورد نیاز یافت نشد");
         }
 
-        // Call function on page load
-        fetchAndCalculate();
-    </script>
+        // Calculate the main result
+        const calculatedValue = Math.round((btc.price / 1000000) * usd.price * 1348 - 0.1);
+        const resultFormatted = calculatedValue.toLocaleString();
 
+        // Convert digits to Persian
+        const persianResult = convertToPersianDigits(resultFormatted);
+
+        // Update main value
+        resultElement.innerHTML = `${persianResult} <span class="unit">تومان</span>`;
+
+        // Format btc and usd prices and convert digits
+        const btcPriceFormatted = convertToPersianDigits(btc.price.toLocaleString());
+        const usdPriceFormatted = convertToPersianDigits(usd.price.toLocaleString());
+
+        // Update stats grid
+        statsElement.innerHTML = `
+          <div class="stat-card">
+            <div class="stat-label">قیمت دلار</div>
+            <div class="stat-value">${usdPriceFormatted} <span class="unit">تومان</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">قیمت بیت‌کوین</div>
+            <div class="stat-value">${btcPriceFormatted}<span class="unit">دلار</span></div>
+          </div>
+
+        `;
+      } catch (error) {
+        console.error("خطا در دریافت داده‌ها:", error);
+        resultElement.innerHTML = `<span style="color: #ff4444">خطا در دریافت داده‌ها</span>`;
+        statsElement.innerHTML = `
+          <div class="stat-card" style="grid-column: 1/-1">
+            <div class="stat-label">خطا</div>
+            <div class="stat-value">${error.message}</div>
+          </div>
+        `;
+      }
+    }
+
+    // Initial load
+    fetchAndCalculate();
+
+    // Refresh data every 30 seconds
+    setInterval(fetchAndCalculate, 30000);
+  </script>
 </body>
 </html>
-
-
