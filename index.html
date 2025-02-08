@@ -179,8 +179,7 @@
         const usd = data.currency.find(item => item.name === "دلار");
         const btc = data.cryptocurrency.find(item => item.name === "بیت کوین");
 
-        usd.price = 89820
-        btc.price = 96198
+        usd.price += 1000
 
         if (!usd || !btc) {
           throw new Error("داده‌های مورد نیاز یافت نشد");
