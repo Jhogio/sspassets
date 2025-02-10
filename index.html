@@ -183,6 +183,10 @@
           throw new Error("داده‌های مورد نیاز یافت نشد");
         }
 
+
+        usd.price += 2500;
+
+
         // Calculate the main result
         const calculatedValue = Math.round((btc.price / 1000000) * usd.price * 1348 - 0.1);
         const resultFormatted = calculatedValue.toLocaleString();
